@@ -8,12 +8,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   let [watchlist, setWatchList] = useState([]);
-  console.log(watchlist);
+
   let handleAddToWatchList = (movieObj) => {
     let newWatchList = [...watchlist, movieObj];
     localStorage.setItem("moviesApp", JSON.stringify(newWatchList));
     setWatchList(newWatchList);
-    console.log(watchlist);
   };
   let handleRemoveFromWatchList = (movieObj) => {
     let filteredWatchList = watchlist.filter((movie) => {
@@ -21,7 +20,6 @@ function App() {
     });
     localStorage.setItem("moviesApp", JSON.stringify(filteredWatchList));
     setWatchList(filteredWatchList);
-    console.log(watchlist);
   };
   useEffect(() => {
     let moviesFromLocalStorage = localStorage.getItem("moviesApp");
@@ -51,7 +49,11 @@ function App() {
           <Route
             path="/watchlist"
             element={
-              <WatchList watchlist={watchlist} setWatchList={setWatchList} />
+              <WatchList
+                watchlist={watchlist}
+                handleRemoveFromWatchList={handleRemoveFromWatchList}
+                setWatchList={setWatchList}
+              />
             }
           />
         </Routes>

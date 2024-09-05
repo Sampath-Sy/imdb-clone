@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const WatchList = ({ watchlist, setWatchList }) => {
+const WatchList = ({ watchlist, setWatchList, handleRemoveFromWatchList }) => {
   const [search, setSearch] = useState("");
   const handleSearch = (e) => {
     setSearch(e.target.value);
@@ -41,11 +41,11 @@ const WatchList = ({ watchlist, setWatchList }) => {
             <tr>
               <th>Name</th>
               <th className="flex justify-center">
-                <div onClick={sortIncreasingOrder} className="p-2">
+                <div onClick={sortDecreasingOrder} className="p-2">
                   <i class="fa-solid fa-arrow-up"></i>
                 </div>
                 <div className="p-2">Ratings</div>
-                <div onClick={sortDecreasingOrder} className="p-2">
+                <div onClick={sortIncreasingOrder} className="p-2">
                   <i class="fa-solid fa-arrow-down"></i>
                 </div>
               </th>
@@ -73,7 +73,12 @@ const WatchList = ({ watchlist, setWatchList }) => {
                     <td>{movieObj.vote_average}</td>
                     <td>{movieObj.popularity}</td>
                     <td>Action</td>
-                    <td className="text-red-800">Delete</td>
+                    <td
+                      onClick={() => handleRemoveFromWatchList(movieObj)}
+                      className="text-red-800 hover:cursor-pointer"
+                    >
+                      Delete
+                    </td>
                   </tr>
                 );
               })}
