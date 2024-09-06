@@ -68,11 +68,17 @@ const WatchList = ({ watchlist, setWatchList, handleRemoveFromWatchList }) => {
             <tr>
               <th>Name</th>
               <th className="flex justify-center">
-                <div onClick={sortDecreasingOrder} className="p-2">
+                <div
+                  onClick={sortDecreasingOrder}
+                  className="p-2 hover:cursor-pointer"
+                >
                   <i class="fa-solid fa-arrow-up"></i>
                 </div>
                 <div className="p-2">Ratings</div>
-                <div onClick={sortIncreasingOrder} className="p-2">
+                <div
+                  onClick={sortIncreasingOrder}
+                  className="p-2 hover:cursor-pointer"
+                >
                   <i class="fa-solid fa-arrow-down"></i>
                 </div>
               </th>
