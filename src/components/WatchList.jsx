@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import genreids from "../Utility/genre";
+import { AppContext } from "../context/AppContext";
 
-const WatchList = ({ watchlist, setWatchList, handleRemoveFromWatchList }) => {
+const WatchList = () => {
   const [search, setSearch] = useState("");
   const [genreList, setGenreList] = useState(["All Genres"]);
   const [currGenre, setCurrGenre] = useState("All Genres");
-
+  const { setWatchList, handleRemoveFromWatchList, watchlist } =
+    useContext(AppContext);
   const handleFilter = (genre) => {
     setCurrGenre(genre);
   };
@@ -41,8 +43,8 @@ const WatchList = ({ watchlist, setWatchList, handleRemoveFromWatchList }) => {
               onClick={() => handleFilter(genre)}
               className={
                 currGenre === genre
-                  ? "flex justify-center items-center h-[3rem] w-[9rem] bg-blue-400/50 rounded-xl text-white font-bold mx-4 hover:cursor-pointer"
-                  : "flex justify-center items-center h-[3rem] w-[9rem] bg-gray-400/50 rounded-xl text-white font-bold mx-4 hover:cursor-pointer"
+                  ? "flex justify-center items-center h-[3rem] w-[9rem] bg-blue-400/50 rounded-xl text-white font-bold m-4 hover:cursor-pointer"
+                  : "flex justify-center items-center h-[3rem] w-[9rem] bg-gray-400/50 rounded-xl text-white font-bold m-4 hover:cursor-pointer"
               }
             >
               {genre}

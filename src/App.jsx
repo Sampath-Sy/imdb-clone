@@ -4,6 +4,7 @@ import Banner from "./components/Banner";
 import Movies from "./components/Movies";
 import Navbar from "./components/Navbar";
 import WatchList from "./components/WatchList";
+import { AppContext } from "./context/AppContext";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -30,34 +31,30 @@ function App() {
   }, []);
   return (
     <>
-      <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <Banner />
-                <Movies
-                  watchlist={watchlist}
-                  handleAddToWatchList={handleAddToWatchList}
-                  handleRemoveFromWatchList={handleRemoveFromWatchList}
-                />
-              </>
-            }
-          />
-          <Route
-            path="/watchlist"
-            element={
-              <WatchList
-                watchlist={watchlist}
-                handleRemoveFromWatchList={handleRemoveFromWatchList}
-                setWatchList={setWatchList}
-              />
-            }
-          />
-        </Routes>
-      </BrowserRouter>
+      <AppContext.Provider
+        value={{
+          watchlist,
+          handleAddToWatchList,
+          handleRemoveFromWatchList,
+          setWatchList,
+        }}
+      >
+        <BrowserRouter>
+          <Navbar />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <Banner />
+                  <Movies />
+                </>
+              }
+            />
+            <Route path="/watchlist" element={<WatchList />} />
+          </Routes>
+        </BrowserRouter>
+      </AppContext.Provider>
     </>
   );
 }

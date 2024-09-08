@@ -1,13 +1,8 @@
-import React from "react";
-
-const MovieCard = ({
-  movieObj,
-  poster_path,
-  name,
-  handleAddToWatchList,
-  handleRemoveFromWatchList,
-  watchlist,
-}) => {
+import React, { useContext } from "react";
+import { AppContext } from "../context/AppContext";
+const MovieCard = ({ movieObj, poster_path, name }) => {
+  const { handleAddToWatchList, handleRemoveFromWatchList, watchlist } =
+    useContext(AppContext);
   function doesContain(movieObj) {
     for (let i = 0; i < watchlist.length; i++) {
       if (watchlist[i].id == movieObj.id) {
