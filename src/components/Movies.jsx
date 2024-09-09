@@ -32,9 +32,9 @@ const Movies = ({}) => {
   }, [loadMoreMovies]);
   const handleScroll = () => {
     const bottom =
-      window.innerHeight + document.documentElement.scrollTop ===
-      document.documentElement.offsetHeight;
-    if (bottom && hasMore) {
+      window.innerHeight + document.documentElement.scrollTop >=
+      document.documentElement.offsetHeight - 100;
+    if (bottom && hasMore && !loading) {
       loadMoreMovies();
     }
   };
