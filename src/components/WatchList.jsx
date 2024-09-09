@@ -36,7 +36,7 @@ const WatchList = () => {
   }, [watchlist]);
   return (
     <>
-      <div className="flex justify-center flex-wrap m-4">
+      <div className="flex justify-center flex-wrap pt-16 mt-8">
         {genreList.map((genre) => {
           return (
             <div
